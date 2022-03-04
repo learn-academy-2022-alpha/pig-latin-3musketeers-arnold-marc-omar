@@ -34,14 +34,45 @@ class App extends Component{
       console.log("vowelsArray:", vowelsArray)
 
       // your code here!
-
+      
+      // find out if the first letter of each string is a vowel
+      if (currentWord[0] === vowelsArray[0]){
+        // return the word with an added way at the end
+        return currentWord + "way"
+      } else {
+        // if the vowel does not start with a vowel, then we break it down if it has the letter qu, and y
+          if (currentWord.includes("qu")) {
+            // if the word includes qu, then we find what index it is in the word
+            let q = currentWord.indexOf("qu")
+            // we use substring to get the letters after QU and add that letter at the end of the substring by using slice method then we add AY at the end of it
+            return currentWord.substring(q + 2) + currentWord.slice(0, q + 2) + "ay"
+          } else if (currentWord.includes("y")) {
+            // if the word includes Y, we use index of to get the index of Y, and also the index of vowel to get know wheather the y has been use as a vowel or not
+                let a = currentWord.indexOf(vowelsArray[0])
+                let y = currentWord.indexOf("y")
+              if (a > currentWord.indexOf(y)){
+                let a = currentWord.indexOf(vowelsArray[0])
+                return currentWord.substring(a) + currentWord.slice(0, a) + "ay"
+             
+              } else {
+                let y = currentWord.indexOf("y")
+                return currentWord.substring(y) + currentWord.slice(0, y) + "ay"
+            }
+          } else {
+            let a = currentWord.indexOf(vowelsArray[0])
+            return currentWord.substring(a) + currentWord.slice(0, a) + "ay"
+          }
+        }
+      // }else {
+      //   let y = currentWord.indexOf("y")
+      //   return currentWord.substring(y) + currentWord.slice(0, y) + "ay"
+      // }
+        
       // Remember: console.log is your friend :)
-
 
       // ACTION ITEM: change the value of currentWord to the name of whatever variable you made containing your Pig Latin'd word
       return currentWord
     })
-
 
     // joining the array back to a string of translated words
     // no need to change this variable
